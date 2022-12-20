@@ -7,20 +7,21 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     private Rigidbody rb;
-    private bool isGrounded;
+    private bool isGrounded = false;
     public Animator anim;
-
     public Transform pivot;
     public float rotateSpeed;
-    
     public GameObject model;
+    private float jumpTimeCounter;
+    public float jumpTime;
+    private bool isJumping;
 
     void Start()
     {
        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -40,23 +41,33 @@ public class Player : MonoBehaviour
             model.transform.rotation = Quaternion.Slerp(model.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
         }
 
-        if(Input.GetButtonDown("Jump") && rb.velocity.y == 0) {
-            anim.SetTrigger("jump");
-            rb.velocity = Vector3.up * jumpForce;
-            //StartCoroutine(StartJumping());
-        }
-
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("speed", Mathf.Abs(vertical) + Mathf.Abs(horizontal));
     }
+    
+    void Update() {
+        Debug.Log(isGrounded);
 
-    IEnumerator StartJumping() {
-        anim.SetTrigger("jump");
-        yield return new WaitForSeconds(.5f);
-        rb.velocity = Vector3.up * jumpForce;
+         if(Input.GetButtonDown("Jump") && isGrounded) {
+            anim.SetTrigger("jump");
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            rb.velocity = Vector3.up * jumpForce;
+        }
+
+        if(Input.GetButton("Jump") && isJumping) {
+            if(jumpTimeCounter > 0) {
+                rb.velocity = Vector3.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            } else isJumping = false;
+        }
+
+        if(Input.GetButtonUp("Jump")) {
+            isJumping = false;
+        }
     }
 
-    void OnCollisionStay(Collision other) {
+    void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Ground")) {
             isGrounded = true;           
         }
