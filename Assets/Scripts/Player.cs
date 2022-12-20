@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     private Rigidbody rb;
+    private bool isGrounded;
     public Animator anim;
 
     public Transform pivot;
@@ -40,9 +41,30 @@ public class Player : MonoBehaviour
         }
 
         if(Input.GetButtonDown("Jump") && rb.velocity.y == 0) {
+            anim.SetTrigger("jump");
             rb.velocity = Vector3.up * jumpForce;
+            //StartCoroutine(StartJumping());
         }
-        
+
+        anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("speed", Mathf.Abs(vertical) + Mathf.Abs(horizontal));
+    }
+
+    IEnumerator StartJumping() {
+        anim.SetTrigger("jump");
+        yield return new WaitForSeconds(.5f);
+        rb.velocity = Vector3.up * jumpForce;
+    }
+
+    void OnCollisionStay(Collision other) {
+        if(other.gameObject.CompareTag("Ground")) {
+            isGrounded = true;           
+        }
+    }
+
+    void OnCollisionExit(Collision other) {
+         if(other.gameObject.CompareTag("Ground")) {
+            isGrounded = false;           
+        }
     }
 }
