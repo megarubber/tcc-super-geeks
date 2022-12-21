@@ -46,10 +46,9 @@ public class Player : MonoBehaviour
     }
     
     void Update() {
-        Debug.Log(isGrounded);
-
-         if(Input.GetButtonDown("Jump") && isGrounded) {
-            anim.SetTrigger("jump");
+        if(Input.GetButtonDown("Jump") && isGrounded) {
+            //anim.SetTrigger("jump");
+            anim.Play("Jump");
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector3.up * jumpForce;
