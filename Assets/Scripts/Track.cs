@@ -5,11 +5,10 @@ using UnityEngine;
 public class Track : MonoBehaviour
 {
     public GameObject[] buildings;
-    private int idBuild;
     private float zPoint;
     public Transform reference;
-    public float minZOffset;
-    public float maxZOffset;
+    public Vector3 maxOffset;
+    public Vector3 minOffset;
     public int numberBuildings;
 
     void Start() {
@@ -23,20 +22,29 @@ public class Track : MonoBehaviour
     }
 
     void ResetZPoint() {
-        zPoint = minZOffset;
+        zPoint = minOffset.z;
     }
 
     void InstantiateBuildings() {
         for(int i = 0; i < numberBuildings; i++) {
             StartCoroutine(BuildingsPerTime(10f, zPoint));
-            zPoint += Random.Range(minZOffset, maxZOffset);
+            zPoint += Random.Range(maxOffset.z, minOffset.z);
         }
         ResetZPoint();
     }
 
     IEnumerator BuildingsPerTime(float time, float offset) {
-        idBuild = (int)Random.Range(0, buildings.Length - 1);
-        Instantiate(buildings[idBuild], new Vector3(0, -10, offset), Quaternion.identity);
+        int idBuild = (int)Random.Range(0, buildings.Length - 1);
+        
+        float xSort = Random.Range(minOffset.x, maxOffset.x);
+        float ySort = Random.Range(minOffset.y, maxOffset.y);
+
+        Instantiate(
+            buildings[idBuild], 
+            new Vector3(xSort, ySort, offset), 
+            Quaternion.EulerAngles(0f, Random.Range(0f, 180f), 0f)
+        );
+
         yield return new WaitForSeconds(time);
     }
 }

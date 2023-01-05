@@ -512,6 +512,6 @@ MonoBehaviour:
   - {fileID: 8363527818248484803, guid: cdc0be50f730cb247a7118a0f01596bf, type: 3}
   - {fileID: 3996588464044858696, guid: fc3731af38eba094790fd34dd0521e01, type: 3}
   reference: {fileID: 233070055}
-  minZOffset: 17
-  maxZOffset: 27
+  maxOffset: {x: 10, y: -15, z: 25}
+  minOffset: {x: -10, y: -10, z: 5}
   numberBuildings: 20
