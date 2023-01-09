@@ -10,6 +10,8 @@ public class Track : MonoBehaviour
     public Vector3 maxOffset;
     public Vector3 minOffset;
     public int numberBuildings;
+    public float timeBetweenSpawn;
+    private float timer;
 
     void Start() {
         ResetZPoint();
@@ -18,7 +20,11 @@ public class Track : MonoBehaviour
 
     void Update()
     {
-
+        timer += Time.deltaTime;
+        if(timer > timeBetweenSpawn) {
+            timer = 0;
+            InstantiateBuildings();
+        }
     }
 
     void ResetZPoint() {
@@ -30,7 +36,7 @@ public class Track : MonoBehaviour
             StartCoroutine(BuildingsPerTime(10f, zPoint));
             zPoint += Random.Range(maxOffset.z, minOffset.z);
         }
-        ResetZPoint();
+        //ResetZPoint();
     }
 
     IEnumerator BuildingsPerTime(float time, float offset) {
@@ -42,7 +48,7 @@ public class Track : MonoBehaviour
         Instantiate(
             buildings[idBuild], 
             new Vector3(xSort, ySort, offset), 
-            Quaternion.EulerAngles(0f, Random.Range(0f, 180f), 0f)
+            Quaternion.Euler(0f, Random.Range(0f, 180f), 0f)
         );
 
         yield return new WaitForSeconds(time);
