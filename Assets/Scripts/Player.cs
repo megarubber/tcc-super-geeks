@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public float jumpTime;
     private bool isJumping;
 
+    private int maxNumJump = 2;
+    private int jumpCount;
+
     void Start()
     {
        rb = GetComponent<Rigidbody>();
@@ -46,8 +49,9 @@ public class Player : MonoBehaviour
     }
     
     void Update() {
-        if(Input.GetButtonDown("Jump") && isGrounded) {
+        if(Input.GetButtonDown("Jump") && jumpCount < 2) {
             //anim.SetTrigger("jump");
+            jumpCount += 1;
             anim.Play("Jump");
             isJumping = true;
             jumpTimeCounter = jumpTime;
@@ -68,7 +72,8 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Ground")) {
-            isGrounded = true;           
+            isGrounded = true;
+            jumpCount = 0;           
         }
     }
 
