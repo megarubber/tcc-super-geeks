@@ -45,11 +45,12 @@ public class Track : MonoBehaviour
         float xSort = Random.Range(minOffset.x, maxOffset.x);
         float ySort = Random.Range(minOffset.y, maxOffset.y);
 
-        Instantiate(
+        var obj = Instantiate(
             buildings[idBuild], 
             new Vector3(xSort, ySort, offset), 
             Quaternion.Euler(0f, Random.Range(0f, 180f), 0f)
         );
+        obj.transform.parent = gameObject.transform;
 
         yield return new WaitForSeconds(time);
     }
