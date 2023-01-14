@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Move Variables")]
     public float moveSpeed;
     
+    [Header("Other Variables")]
     private Rigidbody rb;
-    private bool isGrounded = false;
     public Animator anim;
     public Transform pivot;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] LayerMask ground;
     public float rotateSpeed;
     public GameObject model;
 
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
     void Start()
     {
        rb = GetComponent<Rigidbody>();
+       groundCheck = GameObject.Find("GroundCheck").transform;
     }
 
     void FixedUpdate()
@@ -46,12 +50,15 @@ public class Player : MonoBehaviour
             model.transform.rotation = Quaternion.Slerp(model.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
         }
 
-        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isGrounded", isGrounded());
         anim.SetFloat("speed", Mathf.Abs(vertical) + Mathf.Abs(horizontal));
+
+        if(isGrounded()) jumpCount = 0;
+        Debug.Log(jumpCount);
     }
     
     void Update() {
-        if(Input.GetButtonDown("Jump") && jumpCount < 2) {
+        if(Input.GetButtonDown("Jump") && jumpCount < 1) {
             //anim.SetTrigger("jump");
             jumpCount += 1;
             anim.Play("Jump");
@@ -67,23 +74,10 @@ public class Player : MonoBehaviour
             } else isJumping = false;
         }
 
-        if(Input.GetButtonUp("Jump")) {
-            isJumping = false;
-        }
+        if(Input.GetButtonUp("Jump")) isJumping = false;
     }
 
-    /*
-    void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("Ground")) {
-            isGrounded = true;
-            jumpCount = 0;           
-        }
+    bool isGrounded() {
+        return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
-
-    void OnCollisionExit(Collision other) {
-         if(other.gameObject.CompareTag("Ground")) {
-            isGrounded = false;           
-        }
-    }
-    */
 }
