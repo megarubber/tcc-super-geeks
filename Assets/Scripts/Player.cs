@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     [Header("Jump Variables")]
     public float jumpForce;
-    private int maxNumJump = 2;
     private int jumpCount;
     private float jumpTimeCounter;
     public float jumpTime;
@@ -54,7 +53,6 @@ public class Player : MonoBehaviour
         anim.SetFloat("speed", Mathf.Abs(vertical) + Mathf.Abs(horizontal));
 
         if(isGrounded()) jumpCount = 0;
-        Debug.Log(jumpCount);
     }
     
     void Update() {
