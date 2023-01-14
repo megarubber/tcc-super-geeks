@@ -82,6 +82,10 @@ MonoBehaviour:
   moveSpeed: 5
   anim: {fileID: 6604343806485072134}
   pivot: {fileID: 0}
+  groundCheck: {fileID: 0}
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
   rotateSpeed: 10
   model: {fileID: 6297789721767916589}
   jumpForce: 5

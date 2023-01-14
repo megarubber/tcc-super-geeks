@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 427791623}
   - component: {fileID: 427791622}
   - component: {fileID: 427791621}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
-  m_TagString: Ground
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427791620}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3c3839da7c04f8b4d9636208f0cd0fe6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
