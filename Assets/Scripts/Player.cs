@@ -5,19 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float moveSpeed;
-    public float jumpForce;
+    
     private Rigidbody rb;
     private bool isGrounded = false;
     public Animator anim;
     public Transform pivot;
     public float rotateSpeed;
     public GameObject model;
+
+    [Header("Jump Variables")]
+    public float jumpForce;
+    private int maxNumJump = 2;
+    private int jumpCount;
     private float jumpTimeCounter;
     public float jumpTime;
     private bool isJumping;
-
-    private int maxNumJump = 2;
-    private int jumpCount;
 
     void Start()
     {
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Ground")) {
             isGrounded = true;
@@ -82,4 +85,5 @@ public class Player : MonoBehaviour
             isGrounded = false;           
         }
     }
+    */
 }
