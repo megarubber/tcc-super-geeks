@@ -23,6 +23,11 @@ public class NetworkController : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
+    public override void OnJoinedRoom()
+    {
+        StartGame();
+    }
+
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("OnJoinRandomFailed");
@@ -47,34 +52,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        lobbySystem.PanelLobbyActive(true);
         PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-    {
-        Debug.Log("OnPlayerEnteredRoom");
-        if(PhotonNetwork.CurrentRoom.PlayerCount == playerRoomMax)
-        {
-            foreach(var player in PhotonNetwork.PlayerList)
-            {
-                if(player.IsMasterClient)
-                {
-                    StartGame();
-                    Hashtable props = new Hashtable
-                    {
-                        {CountdownTimer.CountdownStartTime, (float) PhotonNetwork.Time}
-                    };
-                    PhotonNetwork.CurrentRoom.SetCustomProperties(props);
-                }
-            }
-        }
-    }
-
-    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
-    {
-        if(propertiesThatChanged.ContainsKey(CountdownTimer.CountdownStartTime))
-            lobbySystem.lobbyStartTime.gameObject.SetActive(true);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
