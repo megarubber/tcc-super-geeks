@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [Header("Other Variables")]
     private Rigidbody rb;
     public Animator anim;
-    public Transform pivot;
+    [SerializeField] private Transform pivot;
     [SerializeField] private Transform groundCheck;
     [SerializeField] LayerMask ground;
     public float rotateSpeed;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     {
        rb = GetComponent<Rigidbody>();
        groundCheck = GameObject.Find("GroundCheck").transform;
+       pivot = GameObject.Find("Main Camera/Pivot").transform;
     }
 
     void FixedUpdate()
