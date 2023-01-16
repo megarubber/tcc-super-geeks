@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
     public float jumpTime;
     private bool isJumping;
 
+    [Header("Item Variables")]
+    public Transform spawnPoint;
+    public GameObject bomb;
+    public float launchSpeed = 10f;
+    private int nBombs = 3;
+
     void Start()
     {
        rb = GetComponent<Rigidbody>();
@@ -74,9 +80,17 @@ public class Player : MonoBehaviour
         }
 
         if(Input.GetButtonUp("Jump")) isJumping = false;
+
+        if(Input.GetButtonDown("Fire1") && nBombs > 0) Launch();
     }
 
     bool isGrounded() {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
+    }
+
+    void Launch() {
+        GameObject bombInstance = Instantiate(bomb, spawnPoint.position, spawnPoint.rotation);
+        bombInstance.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * launchSpeed, ForceMode.Impulse);
+        nBombs--;
     }
 }
