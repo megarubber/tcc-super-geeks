@@ -65,7 +65,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c32296089e2fd74a9ac60b497483071, type: 3}
       propertyPath: m_Name
-      value: TimeAttackClock
+      value: TimePicker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c32296089e2fd74a9ac60b497483071, type: 3}
+--- !u!1 &3572312532471011769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c32296089e2fd74a9ac60b497483071, type: 3}
+  m_PrefabInstance: {fileID: 4418610142901265640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406271928275910049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572312532471011769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62ff689e0617404096dff3e6f3aa334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 1

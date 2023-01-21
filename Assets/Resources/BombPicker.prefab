@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c6357a3074f1b9d4898d2e511c0899b9, type: 3}
       propertyPath: m_Name
-      value: Cardboard_box
+      value: BombPicker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6357a3074f1b9d4898d2e511c0899b9, type: 3}
