@@ -40,8 +40,9 @@ public class Track : MonoBehaviour
     }
 
     IEnumerator BuildingsPerTime(float time, float offset) {
-        int idBuild = (int)Random.Range(0, buildings.Length - 1);
-        
+        int idBuild = Random.Range(0, buildings.Length);
+        //Debug.Log(idBuild);
+
         float xSort = Random.Range(minOffset.x, maxOffset.x);
         float ySort = Random.Range(minOffset.y, maxOffset.y);
 
