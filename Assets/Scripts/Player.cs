@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     [Header("Item Variables")]
     public Transform spawnPoint;
     public GameObject bomb;
-    public float launchSpeed = 10f;
-    private int nBombs = 3;
+    public float launchSpeed = 3f;
+    private int nBombs = 15;
 
     void Start()
     {
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
     }
 
     void Launch() {
+        spawnPoint.eulerAngles = model.transform.eulerAngles;
         GameObject bombInstance = Instantiate(bomb, spawnPoint.position, spawnPoint.rotation);
         bombInstance.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * launchSpeed, ForceMode.Impulse);
         nBombs--;
