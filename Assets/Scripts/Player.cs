@@ -27,7 +27,10 @@ public class Player : MonoBehaviour
     public Transform spawnPoint;
     public GameObject bomb;
     public float launchSpeed = 3f;
-    private static int nBombs = 3;
+    public static int nBombs = 3;
+    public GameObject jetpackModel;
+    private bool jetpackMode = false;
+    public static int jetpackForce = 1000;
 
     void Start()
     {
@@ -63,24 +66,37 @@ public class Player : MonoBehaviour
     }
     
     void Update() {
-        if(Input.GetButtonDown("Jump") && jumpCount < 1) {
-            //anim.SetTrigger("jump");
-            jumpCount += 1;
-            anim.Play("Jump");
-            isJumping = true;
-            jumpTimeCounter = jumpTime;
-            rb.velocity = Vector3.up * jumpForce;
-        }
-
-        if(Input.GetButton("Jump") && isJumping) {
-            if(jumpTimeCounter > 0) {
+        if(!jetpackMode) {
+            jetpackModel.SetActive(false);
+            if(Input.GetButtonDown("Jump") && jumpCount < 1) {
+                //anim.SetTrigger("jump");
+                jumpCount += 1;
+                anim.Play("Jump");
+                isJumping = true;
+                jumpTimeCounter = jumpTime;
                 rb.velocity = Vector3.up * jumpForce;
-                jumpTimeCounter -= Time.deltaTime;
-            } else isJumping = false;
+            }
+
+            if(Input.GetButton("Jump") && isJumping) {
+                if(jumpTimeCounter > 0) {
+                    rb.velocity = Vector3.up * jumpForce;
+                    jumpTimeCounter -= Time.deltaTime;
+                } else isJumping = false;
+            }
+        
+            if(Input.GetButtonUp("Jump")) isJumping = false;
+        } else {
+            jetpackModel.SetActive(true);
+            if(Input.GetButton("Jump")) {
+                if(jetpackForce > 0) {
+                    rb.velocity = Vector3.up * jumpForce;
+                    jetpackForce -= 1;
+                } else {
+                    jumpCount = 1;
+                    jetpackMode = false;
+                }
+            }
         }
-
-        if(Input.GetButtonUp("Jump")) isJumping = false;
-
         if(Input.GetButtonDown("Fire1") && nBombs > 0) Launch();
     }
 
@@ -102,9 +118,20 @@ public class Player : MonoBehaviour
                 case 0:
                     GameController.StartCounter();
                     break;
+                case 1:
+                    nBombs += Random.Range(1, 3);
+                    break;
+                case 2:
+                    StartJetpack();
+                    break;
                 default:
                     break;
             }
         }
+    }
+
+    void StartJetpack() {
+        jetpackMode = true;
+        jetpackForce = 1000;
     }
 }

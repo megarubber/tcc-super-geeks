@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
     public int id;
 
     [SerializeField] private Movable mov;
-    public float time = 10f;
+    [HideInInspector] public float time = 10f;
 
     void Start()
     {
