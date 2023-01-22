@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2767415207190829622}
   - component: {fileID: 2444728965288623576}
+  - component: {fileID: 6929035398890527794}
   - component: {fileID: 2444728965288623579}
   m_Layer: 0
   m_Name: Bomb
@@ -197,6 +198,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3102752
   m_Center: {x: -0.007083893, y: -0.048100173, z: 0}
+--- !u!114 &6929035398890527794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254983070585962636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4152accfea2544b91d64fae34cc647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 0}
+  delay: 3
+  explosionForce: 30
+  radius: 20
 --- !u!54 &2444728965288623579
 Rigidbody:
   m_ObjectHideFlags: 0
