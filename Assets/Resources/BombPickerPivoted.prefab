@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6580941749374981976}
   - component: {fileID: 2300590659757934709}
+  - component: {fileID: 7079284735163317499}
+  - component: {fileID: 6105832907116623783}
   m_Layer: 0
   m_Name: BombPickerPivoted
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +48,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1
+--- !u!114 &7079284735163317499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317339629765699439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1486b9d49396541b86731c8cf52202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  mov: {fileID: 0}
+  time: 10
+--- !u!65 &6105832907116623783
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317339629765699439}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.92814285, z: 1}
+  m_Center: {x: 0, y: 0.49501368, z: 0}
 --- !u!1001 &7169069442163528694
 PrefabInstance:
   m_ObjectHideFlags: 0

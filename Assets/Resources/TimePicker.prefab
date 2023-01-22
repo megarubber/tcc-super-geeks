@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimePicker
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c32296089e2fd74a9ac60b497483071, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c32296089e2fd74a9ac60b497483071, type: 3}
 --- !u!1 &3572312532471011769 stripped
@@ -74,6 +78,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c32296089e2fd74a9ac60b497483071, type: 3}
   m_PrefabInstance: {fileID: 4418610142901265640}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &745180477125312746
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572312532471011769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 218.18102, y: 253.78284, z: 87.09015}
+  m_Center: {x: -4.316914, y: 123.849106, z: -0.09468198}
 --- !u!114 &1406271928275910049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,3 +104,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1
+--- !u!114 &4428409333619713414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572312532471011769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1486b9d49396541b86731c8cf52202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  mov: {fileID: 0}
+  time: 10
