@@ -29,7 +29,10 @@ public class GameController : MonoBehaviour
     {
         timerText.text = counter.ToString();
         bombText.text = Player.nBombs.ToString();
-        jetpackBar.localScale = new Vector3(calJetpackBar(), 1f, 1f);
+        if(calJetpackBar() >= 0)
+            jetpackBar.localScale = new Vector3(calJetpackBar(), 1f, 1f);
+        else
+            jetpackBar.localScale = new Vector3(0f, 1f, 1f);
 
         jetpackRef.SetActive(Player.jetpackMode);
 
