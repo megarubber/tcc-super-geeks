@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public Transform spawnPoint;
     public GameObject bomb;
     public float launchSpeed = 3f;
-    private int nBombs = 15;
+    private static int nBombs = 3;
 
     void Start()
     {
@@ -93,5 +93,18 @@ public class Player : MonoBehaviour
         GameObject bombInstance = Instantiate(bomb, spawnPoint.position, spawnPoint.rotation);
         bombInstance.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * launchSpeed, ForceMode.Impulse);
         nBombs--;
+    }
+
+    void OnCollisionEnter(Collision other) {
+        if(other.gameObject.tag == "Item") {
+            Item i = other.gameObject.GetComponent<Item>();
+            switch(i.id) {
+                case 0:
+                    GameController.StartCounter();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
