@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5139325224171048516}
   - component: {fileID: 13517881269589923}
   m_Layer: 3
-  m_Name: B1
+  m_Name: B4
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 089b6301030973645867c7728986c867, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 00dc2c666a61fe046ba277b0d1d083a2, type: 2}
+      objectReference: {fileID: 2100000, guid: 17148ffd8daa3d34e8edb3b2a0d6b833, type: 2}
     - target: {fileID: -7511558181221131132, guid: 089b6301030973645867c7728986c867, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 089b6301030973645867c7728986c867, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 00dc2c666a61fe046ba277b0d1d083a2, type: 2}
+      objectReference: {fileID: 2100000, guid: 17148ffd8daa3d34e8edb3b2a0d6b833, type: 2}
     - target: {fileID: -7511558181221131132, guid: 089b6301030973645867c7728986c867, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -422,7 +422,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 089b6301030973645867c7728986c867, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 00dc2c666a61fe046ba277b0d1d083a2, type: 2}
+      objectReference: {fileID: 2100000, guid: 17148ffd8daa3d34e8edb3b2a0d6b833, type: 2}
     - target: {fileID: -7511558181221131132, guid: 089b6301030973645867c7728986c867, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
