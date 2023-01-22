@@ -8,17 +8,26 @@ public class Movable : MonoBehaviour
     public float minSpeed;
     public bool isRandomSpeed = true;
 
-    [SerializeField]
-    private float speed;
+    public float speed;
+    private float realSpeed;
 
     void Start()
     {
+        realSpeed = speed;
         if(isRandomSpeed)
-            speed = Random.Range(maxSpeed, minSpeed);   
+            realSpeed = Random.Range(maxSpeed, minSpeed);   
     }
 
     void Update()
     {
-        transform.position += new Vector3(0, 0, Time.deltaTime * speed);
+        transform.position += new Vector3(0, 0, Time.deltaTime * realSpeed);
+    }
+
+    public void setRealSpeed(float sp) {
+        realSpeed = sp;
+    }
+
+    public float getRealSpeed() {
+        return realSpeed;
     }
 }
