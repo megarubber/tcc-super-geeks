@@ -309,7 +309,7 @@ MonoBehaviour:
   jumpTime: 0.35
   spawnPoint: {fileID: 716199881385583021}
   bomb: {fileID: 3254983070585962636, guid: 849a298df09ecf74cb88e1e3e25b2514, type: 3}
-  launchSpeed: 10
+  launchSpeed: 30
   jetpackModel: {fileID: 194593561726877171}
 --- !u!54 &6604343806162097468
 Rigidbody:
