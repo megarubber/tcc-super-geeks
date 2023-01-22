@@ -5,9 +5,15 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     public GameObject explosionEffect;
-    public float delay = 3f;
+    public float delay;
     public float explosionForce = 10f;
     public float radius = 20f;
+    private float rotateSpeed = 5f;
+
+    void Update()
+    {
+        transform.Rotate(rotateSpeed, 0, 0, Space.World);
+    }
 
     void Explosion()
     {
@@ -18,13 +24,15 @@ public class Bomb : MonoBehaviour
             Rigidbody rb = near.GetComponent<Rigidbody>();
 
             if(rb != null) {
-                rb.AddExplosionForce(explosionForce, transform.position, radius, 1f, ForceMode.Acceleration);
+                rb.AddExplosionForce(explosionForce, transform.position, radius);
             }
         }
+
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision other) {
-        Explosion();
-        Destroy(gameObject);
+        Invoke("Explosion", delay);
     }
 }
