@@ -26,12 +26,12 @@ public class Player : MonoBehaviour
     [Header("Item Variables")]
     public Transform spawnPoint;
     public GameObject bomb;
-    public float launchSpeed = 3f;
-    public static int nBombs = 3;
+    public float launchSpeed;
+    public static int nBombs = 5;
     public GameObject jetpackModel;
     public static bool jetpackMode = false;
-    public static int jetpackForce = 1000;
-    public static int maxJetpackForce = 1000;
+    public static int jetpackForce;
+    public static int maxJetpackForce = 2000;
 
     void Start()
     {
@@ -88,14 +88,14 @@ public class Player : MonoBehaviour
             if(Input.GetButtonUp("Jump")) isJumping = false;
         } else {
             jetpackModel.SetActive(true);
-            if(Input.GetButton("Jump")) {
-                if(jetpackForce > 0) {
-                    rb.velocity = Vector3.up * jumpForce;
-                    jetpackForce -= 1;
-                } else {
-                    jumpCount = 1;
-                    jetpackMode = false;
-                }
+            if(Input.GetButton("Jump") && jetpackForce > 0) {
+                rb.velocity = Vector3.up * jumpForce;
+                jetpackForce -= 1;
+            }
+            jetpackForce -= 1;
+            if(jetpackForce <= 0) {
+                if(!isGrounded()) jumpCount = 1;
+                jetpackMode = false;
             }
         }
         if(Input.GetButtonDown("Fire1") && nBombs > 0) Launch();

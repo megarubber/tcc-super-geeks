@@ -981,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 3254983070585962636, guid: 849a298df09ecf74cb88e1e3e25b2514, type: 3}
     - target: {fileID: 6604343806162097467, guid: d414cca175c43454eadf9cfe76de7fe7, type: 3}
       propertyPath: launchSpeed
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6604343806162097469, guid: d414cca175c43454eadf9cfe76de7fe7, type: 3}
       propertyPath: m_Name
@@ -1699,9 +1699,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildings:
   - {fileID: 5139325224171048519, guid: d4fc7820a06a70d409f287623a3f486b, type: 3}
+  - {fileID: 5139325224171048519, guid: 002cb30444645ce46ad36018484b7c79, type: 3}
+  - {fileID: 5139325224171048519, guid: 58fc97a6d4f09ea4e91a472de2d74f10, type: 3}
+  - {fileID: 5139325224171048519, guid: 2737b6842f64fc842bfbd3863b23aae7, type: 3}
   reference: {fileID: 233070055}
   maxOffset: {x: 0, y: -12, z: 12}
-  minOffset: {x: -10, y: -18, z: 8}
+  minOffset: {x: -10, y: -16, z: 8}
   numberBuildings: 20
   timeBetweenSpawn: 10
 --- !u!1 &2001421039
