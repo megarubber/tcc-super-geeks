@@ -12,13 +12,15 @@ public class GameController : MonoBehaviour
     [Header("Canvas Variables")]
     public GameObject timerRef;
     public GameObject bombRef;
+    public GameObject jetpackRef;
     private Text bombText;
     private Text timerText;
-    public Text jetpackForce;
+    public RectTransform jetpackBar;
 
     void Start()
     {
         timerRef.SetActive(false);
+        jetpackRef.SetActive(false);
         timerText = timerRef.transform.GetChild(1).gameObject.GetComponent<Text>();
         bombText = bombRef.transform.GetChild(1).gameObject.GetComponent<Text>();
     }
@@ -27,7 +29,10 @@ public class GameController : MonoBehaviour
     {
         timerText.text = counter.ToString();
         bombText.text = Player.nBombs.ToString();
-        jetpackForce.text = Player.jetpackForce.ToString();
+        jetpackBar.localScale = new Vector3(calJetpackBar(), 1f, 1f);
+
+        jetpackRef.SetActive(Player.jetpackMode);
+
         if(startCounter) {
             if(counter < 0) {
                 timerRef.SetActive(false);
@@ -47,5 +52,9 @@ public class GameController : MonoBehaviour
     public static void StartCounter() {
         ResetTimer();
         startCounter = true;
+    }
+
+    float calJetpackBar() {
+        return (float)Player.jetpackForce / Player.maxJetpackForce;
     }
 }

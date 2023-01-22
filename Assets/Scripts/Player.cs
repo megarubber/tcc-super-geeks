@@ -29,8 +29,9 @@ public class Player : MonoBehaviour
     public float launchSpeed = 3f;
     public static int nBombs = 3;
     public GameObject jetpackModel;
-    private bool jetpackMode = false;
+    public static bool jetpackMode = false;
     public static int jetpackForce = 1000;
+    public static int maxJetpackForce = 1000;
 
     void Start()
     {
@@ -132,6 +133,6 @@ public class Player : MonoBehaviour
 
     void StartJetpack() {
         jetpackMode = true;
-        jetpackForce = 1000;
+        jetpackForce = maxJetpackForce;
     }
 }
