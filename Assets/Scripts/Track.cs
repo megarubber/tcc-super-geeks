@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Track : MonoBehaviour
 {
@@ -12,8 +13,14 @@ public class Track : MonoBehaviour
     public int numberBuildings;
     public float timeBetweenSpawn;
     private float timer;
+    private List<string> namesBuildings;
 
     void Start() {
+        /*
+        foreach(GameObject b in buildings)
+            namesBuildings.Add(b.name);
+        */
+        //namesBuildings.Add("B1");
         ResetZPoint();
         InstantiateBuildings();
     }
@@ -45,9 +52,15 @@ public class Track : MonoBehaviour
 
         float xSort = Random.Range(minOffset.x, maxOffset.x);
         float ySort = Random.Range(minOffset.y, maxOffset.y);
-
+        /*
         var obj = Instantiate(
             buildings[idBuild], 
+            new Vector3(xSort, ySort, offset), 
+            Quaternion.Euler(0f, Random.Range(0f, 180f), 0f)
+        );
+        */
+        var obj = PhotonNetwork.InstantiateRoomObject(
+            "B1", 
             new Vector3(xSort, ySort, offset), 
             Quaternion.Euler(0f, Random.Range(0f, 180f), 0f)
         );
