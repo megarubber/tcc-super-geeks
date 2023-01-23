@@ -133,6 +133,7 @@ public class Player : MonoBehaviour
 
     void StartJetpack() {
         jetpackMode = true;
+        maxJetpackForce = Random.Range(1000, 2000);
         jetpackForce = maxJetpackForce;
     }
 }

@@ -10,7 +10,7 @@ public class Building : MonoBehaviour
     void Start()
     {
         float inst = Random.Range(0f, 1f);
-        if(inst > 0.1f) {
+        if(inst > 0.4f) {
             int selSpawnPoint = Random.Range(0, spawnPoints.Length);
             int selItem = Random.Range(0, items.Length);
             Instantiate(items[selItem], spawnPoints[selSpawnPoint]);
