@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -99,6 +100,11 @@ public class Player : MonoBehaviour
             }
         }
         if(Input.GetButtonDown("Fire1") && nBombs > 0) Launch();
+
+        // Player fall from buildings (Player's Death)
+        if(transform.position.y < -25) {
+            SceneManager.LoadScene("Result");
+        }
     }
 
     bool isGrounded() {
@@ -113,6 +119,11 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
+        // Player's Death
+        if(other.gameObject.tag == "DestroyPlayer") {
+            SceneManager.LoadScene("Result");
+        }
+
         if(other.gameObject.tag == "Item") {
             Item i = other.gameObject.GetComponent<Item>();
             switch(i.id) {
