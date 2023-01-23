@@ -25,6 +25,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        Debug.Log("OnJoinedRoom");
         StartGame();
     }
 
