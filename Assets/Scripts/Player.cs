@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask ground;
     public float rotateSpeed;
     public GameObject model;
+    public GameObject fireModel;
 
     [Header("Jump Variables")]
     public float jumpForce;
@@ -98,6 +99,7 @@ public class Player : MonoBehaviour
                 if(!isGrounded()) jumpCount = 1;
                 jetpackMode = false;
             }
+            fireModel.SetActive(Input.GetButtonDown("Jump"));
         }
         if(Input.GetButtonDown("Fire1") && nBombs > 0) Launch();
 
