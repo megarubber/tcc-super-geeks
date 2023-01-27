@@ -8,7 +8,7 @@ public class Track : MonoBehaviour
 {
     public GameObject[] buildings;
     private float zPoint;
-    public Transform reference;
+    private Transform reference;
     public Vector3 maxOffset;
     public Vector3 minOffset;
     public int numberBuildings;
@@ -25,6 +25,7 @@ public class Track : MonoBehaviour
         view = GetComponent<PhotonView>();
         ResetZPoint();
         InstantiateBuildings();
+        reference = GameObject.Find("Reference").GetComponent<Transform>();
     }
 
     void Update()
@@ -49,34 +50,57 @@ public class Track : MonoBehaviour
     }
 
     IEnumerator BuildingsPerTime(float time, float offset) {
-        int idBuild = Random.Range(0, buildings.Length);
-        //Debug.Log(idBuild);
+        if (PhotonNetwork.IsMasterClient) {
+            int idBuild = Random.Range(0, buildings.Length);
 
-        float xSort = Random.Range(minOffset.x, maxOffset.x);
-        float ySort = Random.Range(minOffset.y, maxOffset.y);
+            float xSort = Random.Range(minOffset.x, maxOffset.x);
+            float ySort = Random.Range(minOffset.y, maxOffset.y);
 
-        view.RPC("SetRandomValuesBuildings",
-            RpcTarget.OthersBuffered,
-            idBuild,
-            new Vector3(xSort, ySort, offset),
-            Random.Range(0f, 180f)
-        );
+            sBuilding = idBuild;
+            sPosition = new Vector3(xSort, ySort, offset);
+            sRotationY = Random.Range(0f, 180f);
 
+            view.RPC("SetRandomValuesBuildings",
+                RpcTarget.OthersBuffered,
+                idBuild,
+                new Vector3(xSort, ySort, offset),
+                Random.Range(0f, 180f)
+            );
+
+            var obj = Instantiate(
+                buildings[sBuilding], 
+                sPosition, 
+                Quaternion.Euler(0f, sRotationY, 0f)
+            );
+            obj.transform.parent = gameObject.transform;
+        }
+        //Debug.Log(sBuilding);
+        yield return new WaitForSeconds(time);
+    }
+
+    [PunRPC]
+    public void SetRandomValuesBuildings(int i, Vector3 v, float f, PhotonMessageInfo info) {
+        sBuilding = i;
+        sPosition = v;
+        sRotationY = f;
         var obj = Instantiate(
             buildings[sBuilding], 
             sPosition, 
             Quaternion.Euler(0f, sRotationY, 0f)
         );
         obj.transform.parent = gameObject.transform;
-
-        yield return new WaitForSeconds(time);
     }
-
-    [PunRPC]
-    void SetRandomValuesBuildings(int i, Vector3 v, float f) {
-        Debug.Log(sBuilding);
-        sBuilding = i;
-        sPosition = v;
-        sRotationY = f;
+    /*
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if(stream.IsWriting) {
+            stream.SendNext(sBuilding);
+            stream.SendNext(sPosition);
+            stream.SendNext(sRotationY);
+        } else if(stream.IsReading) {
+            sBuilding = (int)stream.ReceiveNext();
+            sPosition = (Vector3)stream.ReceiveNext();
+            sRotationY = (float)stream.ReceiveNext();
+        }
     }
+    */
 }

@@ -11,6 +11,9 @@ public class PlayerSpawner : MonoBehaviour
     void Start()
     {
         int i = Random.Range(0, spawnPoints.Count);
-        PhotonNetwork.Instantiate(myPlayer.name, spawnPoints[i].position, spawnPoints[i].rotation, 0);
+        var p = PhotonNetwork.Instantiate(
+            myPlayer.name, spawnPoints[i].position, spawnPoints[i].rotation, 0
+        );
+        p.name = Server.username;
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
-
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+using UnityEngine.UI;
 
 public class NetworkController : MonoBehaviourPunCallbacks
 {
     [SerializeField] LobbyManager lobbySystem;
     [SerializeField] byte playerRoomMax = 2;
+    private IEnumerator ss;
 
     void StartGame()
     {
@@ -26,6 +26,12 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom");
+        ss = JoinGame();
+        StartCoroutine(ss);
+    }
+
+    IEnumerator JoinGame() {
+        yield return new WaitUntil(() => PhotonNetwork.CurrentRoom.PlayerCount == playerRoomMax);
         StartGame();
     }
 
@@ -64,6 +70,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     public void CancelMatch()
     {
+        StopCoroutine(ss);
         PhotonNetwork.Disconnect();
         lobbySystem.PanelLobbyActive(false);
     }
@@ -71,6 +78,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public void SearchMatch()
     {
         PhotonNetwork.NickName = lobbySystem.playerNameInputField.text;
+        Server.username = lobbySystem.playerNameInputField.text;
         lobbySystem.PanelLobbyActive(true);
         PhotonNetwork.ConnectUsingSettings();
     }

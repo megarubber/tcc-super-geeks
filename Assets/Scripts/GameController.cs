@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+public class GameController :  MonoBehaviour
 {
     public static float counter = 0f;
     private static bool startCounter = false;
